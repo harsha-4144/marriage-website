@@ -17,7 +17,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -28,7 +27,6 @@
     overflow-x: hidden;
   }
 
-  /* ── DECORATIVE BORDER FRAME ── */
   body::before {
     content: '';
     position: fixed;
@@ -52,7 +50,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero::before {
     content: '';
     position: absolute;
@@ -61,7 +58,6 @@
       radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,151,58,0.18) 0%, transparent 70%),
       url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8973a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-
   .mandala-ring {
     position: absolute;
     border-radius: 50%;
@@ -71,7 +67,6 @@
   .mandala-ring:nth-child(1) { width: 500px; height: 500px; animation-duration: 60s; }
   .mandala-ring:nth-child(2) { width: 380px; height: 380px; animation-duration: 45s; animation-direction: reverse; border-style: dashed; }
   .mandala-ring:nth-child(3) { width: 260px; height: 260px; animation-duration: 30s; }
-
   @keyframes spin-slow { to { transform: rotate(360deg); } }
 
   .hero-badge {
@@ -81,17 +76,10 @@
     letter-spacing: 0.4em;
     text-transform: uppercase;
     margin-bottom: 28px;
-    position: relative;
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.3s;
   }
-
-  .hero-badge::before, .hero-badge::after {
-    content: '✦';
-    margin: 0 12px;
-    font-size: 0.7em;
-    opacity: 0.7;
-  }
+  .hero-badge::before, .hero-badge::after { content: '✦'; margin: 0 12px; font-size: 0.7em; opacity: 0.7; }
 
   .hero-number {
     font-family: 'Cinzel Decorative', serif;
@@ -99,13 +87,10 @@
     color: transparent;
     -webkit-text-stroke: 2px var(--gold);
     line-height: 0.85;
-    letter-spacing: -0.02em;
-    position: relative;
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.5s;
     text-shadow: 0 0 80px rgba(200,151,58,0.3);
   }
-
   .hero-years {
     font-family: 'Cinzel Decorative', serif;
     font-size: clamp(1rem, 3vw, 1.8rem);
@@ -115,7 +100,6 @@
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.7s;
   }
-
   .hero-names {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 6vw, 4.5rem);
@@ -125,11 +109,7 @@
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.9s;
   }
-
-  .hero-names span {
-    color: var(--gold-light);
-  }
-
+  .hero-names span { color: var(--gold-light); }
   .hero-date {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
@@ -140,7 +120,6 @@
     opacity: 0;
     animation: fadeUp 1s ease forwards 1.1s;
   }
-
   .hero-scroll {
     position: absolute;
     bottom: 32px;
@@ -154,28 +133,15 @@
     font-size: 0.7rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    animation: bounce 2s ease infinite;
     opacity: 0;
     animation: fadeUp 1s ease forwards 1.5s, bounce 2s ease 2.5s infinite;
   }
-  .hero-scroll::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(200,151,58,0.8), transparent);
-  }
+  .hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(200,151,58,0.8), transparent); }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(8px); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
-  /* ── SECTION COMMON ── */
+  /* ── COMMON ── */
   section { padding: 90px 20px; }
 
   .section-label {
@@ -187,7 +153,6 @@
     text-align: center;
     margin-bottom: 12px;
   }
-
   .section-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 5vw, 3.2rem);
@@ -196,7 +161,6 @@
     color: var(--deep);
     margin-bottom: 16px;
   }
-
   .divider {
     display: flex;
     align-items: center;
@@ -205,20 +169,12 @@
     margin: 20px auto 50px;
     max-width: 300px;
   }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold));
-  }
+  .divider::before,.divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
   .divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
   .divider span { color: var(--gold); font-size: 1.2rem; }
 
-  /* ── PHOTOS GRID ── */
-  .photos-section {
-    background: var(--gold-pale);
-  }
-
+  /* ── PHOTOS ── */
+  .photos-section { background: var(--gold-pale); }
   .photos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -226,7 +182,6 @@
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .photo-card {
     position: relative;
     aspect-ratio: 4/5;
@@ -236,39 +191,8 @@
     cursor: pointer;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
-  .photo-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 20px 50px rgba(43,26,14,0.25);
-  }
+  .photo-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 50px rgba(43,26,14,0.25); }
   .photo-card:nth-child(1) { grid-row: span 2; }
-
-  .photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #e8d5b0, #d4b87a);
-    color: var(--deep);
-  }
-  .photo-placeholder .icon { font-size: 3rem; opacity: 0.5; }
-  .photo-placeholder p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    opacity: 0.7;
-  }
-  .photo-placeholder small {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    opacity: 0.5;
-    font-family: 'Lato', sans-serif;
-  }
-
   .photo-label {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -281,57 +205,22 @@
     text-align: center;
   }
 
-  /* ── POOJA SECTION ── */
-  .pooja-section {
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .pooja-section::before {
-    content: '🕉';
-    position: absolute;
-    font-size: 20rem;
-    opacity: 0.03;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .event-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
+  /* ── POOJA ── */
+  .pooja-section { background: #fff; position: relative; overflow: hidden; }
+  .pooja-section::before { content: '🕉'; position: absolute; font-size: 20rem; opacity: 0.03; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .event-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; max-width: 1000px; margin: 0 auto; }
   .event-card {
     border: 1px solid rgba(200,151,58,0.3);
     border-radius: 8px;
     padding: 36px 28px;
     text-align: center;
-    position: relative;
     background: var(--cream);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .event-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 8px 32px rgba(200,151,58,0.15);
-  }
+  .event-card:hover { border-color: var(--gold); box-shadow: 0 8px 32px rgba(200,151,58,0.15); }
   .event-card .emoji { font-size: 2.8rem; margin-bottom: 16px; }
-  .event-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--deep);
-    margin-bottom: 10px;
-  }
-  .event-card p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #6b5040;
-    margin-bottom: 16px;
-  }
+  .event-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--deep); margin-bottom: 10px; }
+  .event-card p { font-size: 0.9rem; line-height: 1.7; color: #6b5040; margin-bottom: 16px; }
   .event-card .time-badge {
     display: inline-block;
     background: var(--gold-pale);
@@ -347,59 +236,61 @@
 
   /* ── TIMELINE ── */
   .timeline-section { background: var(--gold-pale); }
-
-  .timeline {
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    padding: 20px 0;
-  }
+  .timeline { max-width: 700px; margin: 0 auto; position: relative; padding: 20px 0; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 0; bottom: 0;
+    left: 50%; top: 0; bottom: 0;
     width: 1px;
     background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
     transform: translateX(-50%);
   }
-
-  .timeline-item {
-    display: flex;
-    margin-bottom: 48px;
-    position: relative;
-    align-items: flex-start;
-  }
-  .timeline-item:nth-child(odd) { flex-direction: row; }
+  .timeline-item { display: flex; margin-bottom: 48px; position: relative; align-items: flex-start; }
+  .timeline-item:nth-child(odd)  { flex-direction: row; }
   .timeline-item:nth-child(even) { flex-direction: row-reverse; }
 
   .tl-content {
     width: calc(50% - 36px);
     background: white;
     border-radius: 6px;
-    padding: 20px 24px;
+    padding: 20px 24px 32px;
     box-shadow: 0 4px 16px rgba(43,26,14,0.08);
     border: 1px solid rgba(200,151,58,0.2);
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+    position: relative;
+    user-select: none;
   }
-  .tl-content h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--deep);
-    margin-bottom: 6px;
+  .tl-content:hover {
+    border-color: var(--gold);
+    box-shadow: 0 10px 32px rgba(200,151,58,0.25);
+    transform: translateY(-4px);
   }
-  .tl-content p {
-    font-size: 0.88rem;
-    color: #7a5c42;
-    line-height: 1.6;
+  /* subtle click-to-view hint */
+  .tl-content .tl-hint {
+    position: absolute;
+    bottom: 9px;
+    right: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    opacity: 0.55;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s;
   }
+  .tl-content:hover .tl-hint { opacity: 1; }
+
+  .tl-content h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--deep); margin-bottom: 6px; }
+  .tl-content p  { font-size: 0.88rem; color: #7a5c42; line-height: 1.6; }
 
   .tl-dot {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     background: var(--gold);
     border-radius: 50%;
     display: flex;
@@ -410,7 +301,6 @@
     flex-shrink: 0;
     z-index: 1;
   }
-
   .tl-year {
     font-family: 'Cinzel Decorative', serif;
     font-size: 1.1rem;
@@ -420,50 +310,7 @@
     font-weight: 700;
   }
 
-  /* ── LUNCH MENU ── */
-  .lunch-section { background: white; }
-
-  .menu-grid {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-
-  .menu-category {
-    background: var(--gold-pale);
-    border-radius: 8px;
-    padding: 24px 20px;
-    border-top: 3px solid var(--gold);
-  }
-  .menu-category h4 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .menu-category ul {
-    list-style: none;
-  }
-  .menu-category li {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    color: var(--deep);
-    padding: 6px 0;
-    border-bottom: 1px dashed rgba(200,151,58,0.3);
-  }
-  .menu-category li:last-child { border: none; }
-  .menu-category li::before {
-    content: '✦ ';
-    color: var(--gold);
-    font-size: 0.6rem;
-    vertical-align: middle;
-  }
-
-  /* ── WISHES SECTION ── */
+  /* ── WISHES ── */
   .wishes-section {
     background: linear-gradient(160deg, #2b1a0e, #5a2d12);
     color: white;
@@ -472,10 +319,8 @@
     position: relative;
     overflow: hidden;
   }
-
   .wishes-section .section-title { color: var(--gold-light); }
   .wishes-section .section-label { color: var(--gold); }
-
   .wishes-quote {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.3rem, 3vw, 2rem);
@@ -487,15 +332,7 @@
   }
   .wishes-quote::before { content: '\201C'; color: var(--gold); font-size: 1.4em; line-height: 0; vertical-align: -0.3em; margin-right: 4px; }
   .wishes-quote::after  { content: '\201D'; color: var(--gold); font-size: 1.4em; line-height: 0; vertical-align: -0.3em; margin-left: 4px; }
-
-  .family-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  .family-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 600px; margin: 0 auto; }
   .family-tag {
     background: rgba(200,151,58,0.15);
     border: 1px solid rgba(200,151,58,0.4);
@@ -508,14 +345,7 @@
   }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--deep);
-    text-align: center;
-    padding: 36px 20px;
-    color: rgba(255,255,255,0.35);
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-  }
+  footer { background: var(--deep); text-align: center; padding: 36px 20px; color: rgba(255,255,255,0.35); font-size: 0.8rem; letter-spacing: 0.2em; }
   footer span { color: var(--gold); }
 
   /* ── RESPONSIVE ── */
@@ -526,28 +356,150 @@
     .tl-dot { left: 20px; }
     .hero-number { -webkit-text-stroke: 1.5px var(--gold); }
   }
+
+  /* ══════════════════════════════════
+     TIMELINE POPUP / LIGHTBOX
+  ══════════════════════════════════ */
+  .tl-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(15, 7, 2, 0.90);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .tl-popup-overlay.active {
+    display: flex;
+    animation: overlayIn 0.25s ease;
+  }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .tl-popup-box {
+    background: var(--cream);
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+    border: 1px solid rgba(200,151,58,0.5);
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.78) translateY(40px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);     }
+  }
+
+  /* image area */
+  .tl-popup-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e8d5b0;
+    position: relative;
+  }
+  .tl-popup-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .tl-popup-img-wrap:hover img { transform: scale(1.05); }
+
+  /* year badge over image */
+  .tl-popup-year {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(43,26,14,0.82);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    padding: 5px 16px;
+    border-radius: 100px;
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  /* placeholder when no photo */
+  .tl-popup-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #e8d5b0, #d4b87a);
+    color: var(--deep);
+  }
+  .tl-popup-placeholder span { font-size: 4rem; opacity: 0.4; }
+  .tl-popup-placeholder p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    opacity: 0.6;
+  }
+
+  /* text body */
+  .tl-popup-body {
+    padding: 22px 26px 26px;
+    border-top: 2px solid var(--gold-pale);
+  }
+  .tl-popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .tl-popup-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #7a5c42;
+  }
+
+  /* close button */
+  .tl-popup-close {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(43,26,14,0.80);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.25s;
+    z-index: 10;
+    line-height: 1;
+  }
+  .tl-popup-close:hover { background: var(--gold); color: var(--deep); transform: rotate(90deg) scale(1.1); }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="mandala-ring"></div>
   <div class="mandala-ring"></div>
   <div class="mandala-ring"></div>
-
   <div class="hero-badge">Ruby Anniversary Celebration</div>
   <div class="hero-number">40</div>
   <div class="hero-years">Years of Love &amp; Togetherness</div>
-
   <div class="hero-names">Grandpa &amp; <span>Grandma</span></div>
-  <div class="hero-date">Celebrating ✦ [Your Date Here] ✦ 2025</div>
-
+  <div class="hero-date">Celebrating ✦ 12 - MARCH ✦ 2026</div>
   <div class="hero-scroll">Scroll</div>
 </section>
 
-
-<!-- PHOTO GALLERY -->
+<!-- ── PHOTO GALLERY ── -->
 <section class="photos-section">
   <div class="section-label">Through the Years</div>
   <h2 class="section-title">A Life Captured in Moments</h2>
@@ -556,7 +508,7 @@
   <div class="photos-grid">
     <div class="photo-card">
       <img src="assets/photo1.jpg" alt="Wedding Day" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-      <div class="photo-label">The Beginning — 1985</div>
+      <div class="photo-label">The Beginning — 1986</div>
     </div>
     <div class="photo-card">
       <img src="assets/photo2.jpg" alt="Growing Family" style="width:100%;height:100%;object-fit:cover;display:block;"/>
@@ -581,22 +533,19 @@
   </div>
 
   <!-- FAMILY PHOTO LANDSCAPE -->
-  <div style="max-width:1100px; margin: 28px auto 0;">
+  <div style="max-width:1100px; margin:28px auto 0;">
     <div class="photo-card" style="aspect-ratio:16/7;">
       <img src="assets/photo7.jpeg" alt="Family Photo" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-      <div class="photo-label" style="font-size:1.3rem; letter-spacing:0.12em; padding: 40px 16px 18px;">Our Family ✦ Together</div>
+      <div class="photo-label" style="font-size:1.3rem;letter-spacing:0.12em;padding:40px 16px 18px;">Our Family ✦ Together</div>
     </div>
   </div>
-
 </section>
 
-
-<!-- CELEBRATION EVENTS -->
+<!-- ── CELEBRATION EVENTS ── -->
 <section class="pooja-section">
   <div class="section-label">Celebration Programme</div>
   <h2 class="section-title">A Day Full of Blessings</h2>
   <div class="divider"><span>🕉</span></div>
-
   <div class="event-cards">
     <div class="event-card">
       <div class="emoji">🌺</div>
@@ -637,110 +586,137 @@
   </div>
 </section>
 
-
-<!-- LOVE TIMELINE -->
+<!-- ── LOVE TIMELINE ── -->
 <section class="timeline-section">
   <div class="section-label">Their Story</div>
   <h2 class="section-title">40 Years of Beautiful Chapters</h2>
   <div class="divider"><span>❤️</span></div>
 
+  <!--
+    HOW TO ADD PHOTOS FOR EACH TIMELINE CARD:
+    Place photos in the assets/ folder named tl1.jpg … tl11.jpg
+    tl1  = Wedding 1986
+    tl2  = Hyndavi 1986
+    tl3  = Pavan Kumar 1987
+    tl4  = Daughter marriage 2002
+    tl5  = 1st grandchild 2003
+    tl6  = Koushik 2007
+    tl7  = Son marriage 2014
+    tl8  = Shre Kavvyah 2015
+    tl9  = Chetan Sai 2017
+    tl10 = House warming 2020
+    tl11 = Anniversary 2026
+    If a photo is missing, a decorative placeholder is shown automatically.
+  -->
+
   <div class="timeline">
 
     <div class="timeline-item">
-      <div class="tl-content">
-        <div class="tl-year">1985</div>
+      <div class="tl-content" onclick="openPopup('assets/tl1.jpeg','1986','The Wedding','Two hearts united in sacred vows. A beautiful ceremony surrounded by loved ones marked the beginning of a lifelong journey together.')">
+        <div class="tl-year">1986</div>
         <h4>The Wedding</h4>
         <p>Two hearts united in sacred vows. A beautiful ceremony surrounded by loved ones marked the beginning of a lifelong journey together.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">💍</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl2.jpg','1986','1st Child — Hyndavi 🌸','The arrival of their beloved first child, Hyndavi, filled their home with immeasurable joy and the warmth of new beginnings.')">
         <div class="tl-year">1986</div>
         <h4>1st Child — Hyndavi 🌸</h4>
         <p>The arrival of their beloved first child, Hyndavi, filled their home with immeasurable joy and the warmth of new beginnings.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">👧</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl3.jpg','1987','2nd Child — Pavan Kumar 🌟','Their son Pavan Kumar arrived, bringing boundless energy and happiness, completing the young family with doubled blessings.')">
         <div class="tl-year">1987</div>
         <h4>2nd Child — Pavan Kumar 🌟</h4>
         <p>Their son Pavan Kumar arrived, bringing boundless energy and happiness, completing the young family with doubled blessings.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">👦</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl4.jpg','2002','Daughter\'s Marriage — Hyndavi &amp; Srinivasa Rao 💐','Their beloved daughter Hyndavi was wed to Srinivasa Rao in a joyous celebration, expanding the family with a loving new bond.')">
         <div class="tl-year">2002</div>
         <h4>Daughter's Marriage — Hyndavi &amp; Srinivasa Rao 💐</h4>
         <p>Their beloved daughter Hyndavi was wed to Srinivasa Rao in a joyous celebration, expanding the family with a loving new bond.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">💒</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl5.jpg','2003','1st Grandchild — Venkata Siva Rama Krishna 👼','The joy of becoming grandparents for the first time arrived with little Venkata Siva Rama Krishna, born to Hyndavi & Srinivasa Rao.')">
         <div class="tl-year">2003</div>
         <h4>1st Grandchild — Venkata Siva Rama Krishna 👼</h4>
         <p>The joy of becoming grandparents for the first time arrived with little Venkata Siva Rama Krishna, born to Hyndavi &amp; Srinivasa Rao.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">🌟</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl6.jpg','2007','2nd Grandchild — Koushik 🌈','Sweet Koushik, the second grandchild born to Hyndavi & Srinivasa Rao, brought yet another wave of love and laughter into their lives.')">
         <div class="tl-year">2007</div>
         <h4>2nd Grandchild — Koushik 🌈</h4>
         <p>Sweet Koushik, the second grandchild born to Hyndavi &amp; Srinivasa Rao, brought yet another wave of love and laughter into their lives.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">👶</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl7.jpg','2014','Son\'s Marriage — Pavan Kumar &amp; Prasanthi 💐','Their son Pavan Kumar married Prasanthi, a blessed union that brought a wonderful daughter-in-law into their loving family.')">
         <div class="tl-year">2014</div>
         <h4>Son's Marriage — Pavan Kumar &amp; Prasanthi 💐</h4>
         <p>Their son Pavan Kumar married Prasanthi, a blessed union that brought a wonderful daughter-in-law into their loving family.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">💒</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl8.jpg','2015','3rd Grandchild — Shre Kavvyah ✨','Little Shre Kavvyah, born to Pavan Kumar & Prasanthi, became their third grandchild and filled every room with her radiant smile.')">
         <div class="tl-year">2015</div>
         <h4>3rd Grandchild — Shre Kavvyah ✨</h4>
         <p>Little Shre Kavvyah, born to Pavan Kumar &amp; Prasanthi, became their third grandchild and filled every room with her radiant smile.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">👧</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl9.jpg','2017','4th Grandchild — Chetan Sai 🌙','Chetan Sai, born to Pavan Kumar & Prasanthi, arrived as the fourth grandchild, the youngest star in their ever-growing constellation of love.')">
         <div class="tl-year">2017</div>
         <h4>4th Grandchild — Chetan Sai 🌙</h4>
         <p>Chetan Sai, born to Pavan Kumar &amp; Prasanthi, arrived as the fourth grandchild, the youngest star in their ever-growing constellation of love.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">👦</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
+      <div class="tl-content" onclick="openPopup('assets/tl10.jpg','2020','House Warming at Srikakulam 🏡','A grand milestone — the family celebrated the house warming of their new home in Srikakulam, a dream built brick by brick with love and hard work.')">
         <div class="tl-year">2020</div>
         <h4>House Warming at Srikakulam 🏡</h4>
         <p>A grand milestone — the family celebrated the house warming of their new home in Srikakulam, a dream built brick by brick with love and hard work.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">🏡</div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content">
-        <div class="tl-year">2025</div>
+      <div class="tl-content" onclick="openPopup('assets/tl11.jpg','2026','Ruby Anniversary ✦ 40 Years','Forty glorious years of love, faith, and devotion. Celebrated today with the whole family — two children, four grandchildren, and countless cherished memories.')">
+        <div class="tl-year">2026</div>
         <h4>Ruby Anniversary ✦ 40 Years</h4>
         <p>Forty glorious years of love, faith, and devotion. Celebrated today with the whole family — two children, four grandchildren, and countless cherished memories.</p>
+        <div class="tl-hint">📷 tap to view photo</div>
       </div>
       <div class="tl-dot">❤️</div>
     </div>
@@ -748,18 +724,14 @@
   </div>
 </section>
 
-
-
-<!-- WISHES -->
+<!-- ── WISHES ── -->
 <section class="wishes-section">
   <div class="section-label">With Love</div>
   <h2 class="section-title" style="color:var(--gold-light)">Our Heartfelt Wishes</h2>
   <div class="divider"><span style="color:var(--gold)">✦</span></div>
-
   <p class="wishes-quote">
     May your love continue to bloom for another 40 years and beyond. You are the roots of our family, and the greatest love story we have ever known.
   </p>
-
   <div class="family-tags">
     <div class="family-tag">Your Children 💛</div>
     <div class="family-tag">Grandchildren 🌸</div>
@@ -768,10 +740,67 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
-  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; <span>40th Anniversary 2025</span></p>
+  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; <span>40th Anniversary 2026</span></p>
 </footer>
+
+
+<!-- ══ TIMELINE POPUP ══ -->
+<div class="tl-popup-overlay" id="tlOverlay" onclick="overlayClick(event)">
+  <div class="tl-popup-box">
+    <button class="tl-popup-close" onclick="closePopup()">✕</button>
+    <div class="tl-popup-img-wrap" id="tlImgWrap"></div>
+    <div class="tl-popup-body">
+      <div class="tl-popup-title" id="tlTitle"></div>
+      <div class="tl-popup-desc"  id="tlDesc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openPopup(photoSrc, year, title, desc) {
+    const wrap = document.getElementById('tlImgWrap');
+    wrap.innerHTML = '';
+
+    // year badge
+    const badge = document.createElement('div');
+    badge.className = 'tl-popup-year';
+    badge.textContent = year;
+    wrap.appendChild(badge);
+
+    // try to load image; show placeholder if missing
+    const img = document.createElement('img');
+    img.alt = title;
+    img.onerror = function () {
+      wrap.innerHTML = '';
+      wrap.appendChild(badge);
+      const ph = document.createElement('div');
+      ph.className = 'tl-popup-placeholder';
+      ph.innerHTML = '<span>📷</span><p>Photo coming soon…</p>';
+      wrap.appendChild(ph);
+    };
+    img.src = photoSrc;
+    wrap.appendChild(img);
+
+    document.getElementById('tlTitle').innerHTML = title;
+    document.getElementById('tlDesc').textContent  = desc;
+
+    document.getElementById('tlOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    document.getElementById('tlOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function overlayClick(e) {
+    if (e.target === document.getElementById('tlOverlay')) closePopup();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+</script>
 
 </body>
 </html>
