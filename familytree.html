@@ -295,24 +295,6 @@
     box-shadow: 0 0 0 2px var(--gold-pale);
     flex-shrink: 0;
   }
-  .stats-bar {
-    display: flex; justify-content: center;
-    gap: 18px; flex-wrap: wrap;
-    margin-top: 18px; padding: 12px 18px;
-    background: white; border-radius: 12px;
-    border: 1px solid rgba(200,151,58,0.2);
-    width: 100%; max-width: 420px;
-  }
-  .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.2rem; color: var(--gold); line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.58rem; letter-spacing: 0.15em;
-    color: var(--warm); text-transform: uppercase; margin-top: 2px;
-  }
-
   /* bigger on desktop */
   @media (min-width: 540px) {
     .tree-container { max-width: 780px; }
@@ -329,8 +311,6 @@
     .vl-sm { height: 18px; }
     .c-line { width: 18px; }
     .c-ring { width: 26px; height: 26px; font-size: 0.75rem; }
-    .stats-bar { max-width: 560px; gap: 28px; }
-    .stat-num { font-size: 1.6rem; }
   }
 
     /* ── FOOTER ── */
@@ -550,14 +530,6 @@
     </div>
 
   </div><!-- end gen2-row -->
-
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Children</div></div>
-    <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Spouses</div></div>
-    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Grandchildren</div></div>
-    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Members</div></div>
-  </div>
 
 </div>
 </div>
