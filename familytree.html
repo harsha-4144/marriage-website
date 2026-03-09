@@ -138,9 +138,13 @@
     align-items: center;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.35s ease;
   }
   .node:active { transform: scale(0.93); }
+  .node:hover, .node:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+  }
 
   .nc {
     border-radius: 50%;
@@ -302,6 +306,13 @@
     .c-ring { width: 26px; height: 26px; font-size: 0.75rem; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .node, .nc-inner, .gen-badge, .couple-row {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
     /* ── FOOTER ── */
   footer {
     background: var(--deep);
@@ -343,13 +354,13 @@
   </div>
 
   <div class="couple-row">
-    <div class="node" onclick="cardClick(this)"
+    <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
       data-name="Venkata Ramana" data-role="Grandfather"
       data-present="assets/gp-grandpa-present.jpg" data-past="assets/gp-grandpa-past.jpg"
       data-dob="18 August 1963" data-dom="12 March 1986"
       data-about="The loving patriarch who has guided this family with wisdom, strength, and grace for 40 beautiful years.">
       <div class="nc nc-xl"><div class="nc-inner">
-        <img src="assets/familytree/photo1.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Venkata Ramana"/>
+        <img src="assets/familytree/photo1.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Venkata Ramana"/>
         <div class="fb">👴</div>
       </div></div>
       <div class="nl"><div class="nl-name">Venkata Ramana</div><div class="nl-role">Grandfather</div><div class="nl-year">DOB: 18 August 1963</div></div>
@@ -359,13 +370,13 @@
       <div class="c-line"></div><div class="c-ring">💍</div><div class="c-line"></div>
     </div>
 
-    <div class="node" onclick="cardClick(this)"
+    <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
       data-name="Chaya Devi" data-role="Grandmother"
       data-present="assets/gp-grandma-present.jpg" data-past="assets/gp-grandma-past.jpg"
       data-dob="31 May 1968" data-dom="12 March 1986"
       data-about="The loving matriarch whose warmth, devotion and endless love have held this family together through every season of life.">
       <div class="nc nc-xl"><div class="nc-inner">
-        <img src="assets/familytree/photo2.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Chaya Devi"/>
+        <img src="assets/familytree/photo2.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Chaya Devi"/>
         <div class="fb">👵</div>
       </div></div>
       <div class="nl"><div class="nl-name">Chaya Devi</div><div class="nl-role">Grandmother</div><div class="nl-year">DOB: 31 May 1968</div></div>
@@ -387,13 +398,13 @@
     <!-- FAMILY 1 -->
     <div class="family-block">
       <div class="couple-row">
-        <div class="node" onclick="cardClick(this)"
+        <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
           data-name="Hyndavi" data-role="Daughter"
           data-present="assets/hyndavi-present.jpg" data-past="assets/hyndavi-past.jpg"
           data-dob="20 December 1986" data-dom="22 May 2002"
           data-about="Eldest daughter of the family. Married Srinivasa Rao in 2002. Blessed with two wonderful sons.">
           <div class="nc nc-md"><div class="nc-inner">
-            <img src="assets/familytree/photo3.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Hyndavi"/>
+            <img src="assets/familytree/photo3.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Hyndavi"/>
             <div class="fb">👩</div>
           </div></div>
           <div class="nl"><div class="nl-name">Hyndavi</div><div class="nl-role">Daughter</div><div class="nl-year">DOB: 20 December 1986</div></div>
@@ -401,13 +412,13 @@
         <div style="padding-bottom:18px;display:flex;align-items:center;">
           <div class="c-line"></div><div class="c-ring" style="font-size:0.5rem;">💍</div><div class="c-line"></div>
         </div>
-        <div class="node" onclick="cardClick(this)"
+        <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
           data-name="Srinivasa Rao" data-role="Son-in-law"
           data-present="assets/srinivasa-rao-present.jpg" data-past="assets/srinivasa-rao-past.jpg"
           data-dob="11 May 1976" data-dom="22 May 2002"
           data-about="Loving husband of Hyndavi. Joined the family in 2002. A wonderful father to Venkata Siva Rama Krishna and Koushik.">
           <div class="nc nc-md"><div class="nc-inner">
-            <img src="assets/familytree/photo4.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Srinivasa Rao"/>
+            <img src="assets/familytree/photo4.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Srinivasa Rao"/>
             <div class="fb">👨</div>
           </div></div>
           <div class="nl"><div class="nl-name">Srinivasa Rao</div><div class="nl-role">Son-in-law</div><div class="nl-year">DOB: 11 May 1976</div></div>
@@ -422,13 +433,13 @@
       <div class="gc-row">
         <div class="gc-col">
           <div class="vline vl-sm"></div>
-          <div class="node" onclick="cardClick(this)"
+          <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
             data-name="Venkata Siva Rama Krishna" data-role="1st Grandchild"
             data-present="assets/gc1-present.jpg" data-past="assets/gc1-past.jpg"
             data-dob="03 November 2003" data-dom="—"
             data-about="1st grandchild, born to Hyndavi and Srinivasa Rao. The eldest among all grandchildren, loved dearly by the whole family.">
             <div class="nc nc-sm"><div class="nc-inner">
-              <img src="assets/familytree/photo5.jpeg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="V.S.R.K"/>
+              <img src="assets/familytree/photo5.jpeg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="V.S.R.K"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
             <div class="nl"><div class="nl-name" style="font-size:0.58rem;max-width:56px;">V. Siva Rama Krishna</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 03 November 2003</div></div>
@@ -436,13 +447,13 @@
         </div>
         <div class="gc-col">
           <div class="vline vl-sm"></div>
-          <div class="node" onclick="cardClick(this)"
+          <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
             data-name="Koushik" data-role="2nd Grandchild"
             data-present="assets/gc2-present.jpg" data-past="assets/gc2-past.jpg"
             data-dob="15 March 2007" data-dom="—"
             data-about="2nd grandchild, born to Hyndavi and Srinivasa Rao. Full of energy, joy, and laughter wherever he goes.">
             <div class="nc nc-sm"><div class="nc-inner">
-              <img src="assets/familytree/photo6.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Koushik"/>
+              <img src="assets/familytree/photo6.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Koushik"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
             <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Koushik</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 15 March 2007</div></div>
@@ -454,13 +465,13 @@
     <!-- FAMILY 2 -->
     <div class="family-block">
       <div class="couple-row">
-        <div class="node" onclick="cardClick(this)"
+        <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
           data-name="Pavan Kumar" data-role="Son"
           data-present="assets/pavan-kumar-present.jpg" data-past="assets/pavan-kumar-past.jpg"
           data-dob="18 November 1987" data-dom="8 February 2014"
           data-about="Youngest son of the family. Married Prasanthi on 8 February 2014. Blessed with two wonderful children, Shre Kavvyah and Chetan Sai.">
           <div class="nc nc-md"><div class="nc-inner">
-            <img src="assets/familytree/photo7.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Pavan Kumar"/>
+            <img src="assets/familytree/photo7.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Pavan Kumar"/>
             <div class="fb">👨</div>
           </div></div>
           <div class="nl"><div class="nl-name">Pavan Kumar</div><div class="nl-role">Son</div><div class="nl-year">DOB: 18 November 1987</div></div>
@@ -468,13 +479,13 @@
         <div style="padding-bottom:18px;display:flex;align-items:center;">
           <div class="c-line"></div><div class="c-ring" style="font-size:0.5rem;">💍</div><div class="c-line"></div>
         </div>
-        <div class="node" onclick="cardClick(this)"
+        <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
           data-name="Prasanthi" data-role="Daughter-in-law"
           data-present="assets/prasanthi-present.jpg" data-past="assets/prasanthi-past.jpg"
           data-dob="29 September 1989" data-dom="8 February 2014"
           data-about="Loving wife of Pavan Kumar. Joined the family on 8 February 2014. A wonderful mother to Shre Kavvyah and Chetan Sai.">
           <div class="nc nc-md"><div class="nc-inner">
-            <img src="assets/familytree/photo8.jpeg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Prasanthi"/>
+            <img src="assets/familytree/photo8.jpeg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Prasanthi"/>
             <div class="fb">👩</div>
           </div></div>
           <div class="nl"><div class="nl-name">Prasanthi</div><div class="nl-role">Dtr-in-law</div><div class="nl-year">DOB: 29 September 1989</div></div>
@@ -489,13 +500,13 @@
       <div class="gc-row">
         <div class="gc-col">
           <div class="vline vl-sm"></div>
-          <div class="node" onclick="cardClick(this)"
+          <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
             data-name="Shre Kavvyah" data-role="3rd Grandchild"
             data-present="assets/gc3-present.jpg" data-past="assets/gc3-past.jpg"
             data-dob="27 February 2015" data-dom="—"
             data-about="3rd grandchild, born to Pavan Kumar and Prasanthi. Fills every room with her radiant smile and cheerful spirit.">
             <div class="nc nc-sm"><div class="nc-inner">
-              <img src="assets/familytree/photo9.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Shre Kavvyah"/>
+              <img src="assets/familytree/photo9.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Shre Kavvyah"/>
               <div class="fb" style="font-size:1rem;">👧</div>
             </div></div>
             <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Shre Kavvyah</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 27 February 2015</div></div>
@@ -503,13 +514,13 @@
         </div>
         <div class="gc-col">
           <div class="vline vl-sm"></div>
-          <div class="node" onclick="cardClick(this)"
+          <div class="node" tabindex="0" role="button" onclick="cardClick(this)"
             data-name="Chetan Sai" data-role="4th Grandchild"
             data-present="assets/gc4-present.jpg" data-past="assets/gc4-past.jpg"
             data-dob="13 August 2017" data-dom="—"
             data-about="4th grandchild, born to Pavan Kumar and Prasanthi. The youngest star in the family constellation, adored by all.">
             <div class="nc nc-sm"><div class="nc-inner">
-              <img src="assets/familytree/photo10.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Chetan Sai"/>
+              <img src="assets/familytree/photo10.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Chetan Sai"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
             <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Chetan Sai</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 13 August 2017</div></div>
@@ -526,7 +537,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; <span>40th Anniversary 2025</span></p>
+  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; 40th Anniversary <span data-anniversary-year></span></p>
 </footer>
 
 
@@ -698,6 +709,7 @@
     if (src) {
       const img = document.createElement('img');
       img.src = src;
+      img.loading = 'lazy';
       img.alt = label;
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       img.onerror = function() {
@@ -744,9 +756,25 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closePopup();
   });
+  document.querySelectorAll('.node').forEach(el => {
+    el.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        cardClick(el);
+      }
+    });
+  });
 </script>
 
 
+
+<script>
+  (function() {
+    document.querySelectorAll('[data-anniversary-year]').forEach(el => {
+      el.textContent = '2026';
+    });
+  })();
+</script>
 
 <script>window.onload = function(){ window.scrollTo(0,0); };</script>
 </body>

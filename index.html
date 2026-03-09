@@ -77,7 +77,10 @@
     text-transform: uppercase;
     margin-bottom: 28px;
     opacity: 0;
-    animation: fadeUp 1s ease forwards 0.3s;
+    animation: fadeUp 1s ease forwards 0.3s, hero-element-pop 0.6s ease 0.4s forwards;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
   .hero-badge::before, .hero-badge::after { content: '✦'; margin: 0 12px; font-size: 0.7em; opacity: 0.7; }
 
@@ -134,12 +137,35 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeUp 1s ease forwards 1.5s, bounce 2s ease 2.5s infinite;
+    animation: hero-scroll-fade 1s ease forwards 1.5s, bounce 2s ease 2.5s infinite;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   .hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(200,151,58,0.8), transparent); }
 
+  .hero-badge:hover, .hero-badge:focus-visible,
+  .hero-scroll:hover, .hero-scroll:focus-visible {
+    transform: translateZ(0) translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(43,26,14,0.3);
+  }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+  @keyframes hero-element-pop { from { opacity: 0; transform: scale(0.95) translateY(-6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes hero-scroll-fade { from { opacity: 0; transform: translateX(-50%) translateY(30px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+  @keyframes fadeOnly { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes photo-card-enter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-badge, .hero-number, .hero-scroll,
+    .photo-card, .tl-content, .tl-popup-box, .tl-popup-overlay, .family-tree-fab {
+      animation: none !important;
+      transition: none !important;
+    }
+    .photo-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   /* ── COMMON ── */
   section { padding: 90px 20px; }
@@ -190,9 +216,13 @@
     box-shadow: 0 8px 30px rgba(43,26,14,0.15);
     cursor: pointer;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(26px);
   }
-  .photo-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 50px rgba(43,26,14,0.25); }
-  .photo-card:nth-child(1) { grid-row: span 2; }
+  .photo-card.is-revealed {
+    animation: photo-card-enter 0.8s ease forwards;
+  }
+  .photo-card:hover, .photo-card:focus-visible { transform: translateY(-4px) scale(1.02); box-shadow: 0 22px 60px rgba(43,26,14,0.35); }
   .photo-label {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -250,6 +280,14 @@
   .timeline-item:nth-child(even) { flex-direction: row-reverse; }
 
   .tl-content {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .tl-content:hover, .tl-content:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 28px rgba(43,26,14,0.28);
+    border-color: var(--gold);
+  }
+  .tl-content {
     width: calc(50% - 36px);
     background: white;
     border-radius: 6px;
@@ -300,6 +338,18 @@
     box-shadow: 0 0 0 4px var(--gold-pale), 0 0 0 6px var(--gold-light);
     flex-shrink: 0;
     z-index: 1;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .tl-content:hover + .tl-dot,
+  .tl-content:focus-visible + .tl-dot {
+    animation: dot-pulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 0 12px rgba(200,151,58,0.08), 0 0 0 4px var(--gold-pale), 0 0 0 6px var(--gold-light);
+  }
+
+  @keyframes dot-pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+    100% { transform: translateX(-50%) scale(1); }
   }
   .tl-year {
     font-family: 'Cinzel Decorative', serif;
@@ -409,7 +459,7 @@
   }
   .tl-popup-overlay.active {
     display: flex;
-    animation: overlayIn 0.25s ease;
+    animation: overlayIn 0.25s ease forwards;
   }
   @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -421,7 +471,7 @@
     overflow: hidden;
     box-shadow: 0 40px 100px rgba(0,0,0,0.7);
     border: 1px solid rgba(200,151,58,0.5);
-    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     position: relative;
   }
   @keyframes popIn {
@@ -934,7 +984,7 @@
   <div class="hero-number">40</div>
   <div class="hero-years">Years of Love &amp; Togetherness</div>
   <div class="hero-names">Grandpa &amp; <span>Grandma</span></div>
-  <div class="hero-date">Celebrating ✦ 12 - MARCH ✦ 2026</div>
+  <div class="hero-date" id="heroDate"></div>
   <div class="hero-scroll">Scroll</div>
 </section>
 
@@ -946,27 +996,27 @@
 
   <div class="photos-grid">
     <div class="photo-card">
-      <img src="assets/photo1.jpeg" alt="Wedding Day" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo1.jpeg" loading=\"lazy\" alt="Wedding Day" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">The Beginning — 1986</div>
     </div>
     <div class="photo-card">
-      <img src="assets/photo2.jpg" alt="Growing Family" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo2.jpg" loading=\"lazy\" alt="Growing Family" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">Our Family Grows</div>
     </div>
     <div class="photo-card">
-      <img src="assets/photo3.jpeg" alt="Our Home" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo3.jpeg" loading=\"lazy\" alt="Our Home" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">Memories at Home</div>
     </div>
     <div class="photo-card">
-      <img src="assets/photo4.jpeg" alt="Travels Together" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo4.jpeg" loading=\"lazy\" alt="Travels Together" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">Adventures Together</div>
     </div>
     <div class="photo-card">
-      <img src="assets/photo5.JPG" alt="Celebrations" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo5.JPG" loading=\"lazy\" alt="Celebrations" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">Joyful Moments</div>
     </div>
     <div class="photo-card">
-      <img src="assets/photo6.jpeg" alt="Today" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo6.jpeg" loading=\"lazy\" alt="Today" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label">40 Years Strong ❤️</div>
     </div>
   </div>
@@ -974,7 +1024,7 @@
   <!-- FAMILY PHOTO LANDSCAPE -->
   <div style="max-width:1100px; margin:28px auto 0;">
     <div class="photo-card" style="aspect-ratio:16/7;">
-      <img src="assets/photo7.jpeg" alt="Family Photo" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <img src="assets/photo7.jpeg" loading=\"lazy\" alt="Family Photo" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       <div class="photo-label" style="font-size:1.3rem;letter-spacing:0.12em;padding:40px 16px 18px;">Our Family ✦ Together</div>
     </div>
   </div>
@@ -1025,6 +1075,34 @@
   </div>
 </section>
 
+<script>
+  (function() {
+    const cards = document.querySelectorAll('.photo-card');
+    if (!cards.length) return;
+    const revealCard = (card, index) => {
+      card.style.animationDelay = `${Math.min(index * 0.12, 0.7)}s`;
+      card.classList.add('is-revealed');
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target;
+          revealCard(card, Number(card.dataset.index || 0));
+          obs.unobserve(card);
+        });
+      }, { threshold: 0.3 });
+      cards.forEach((card, i) => {
+        card.dataset.index = i;
+        observer.observe(card);
+      });
+    } else {
+      cards.forEach((card, i) => revealCard(card, i));
+    }
+  })();
+</script>
+
 <!-- ── LOVE TIMELINE ── -->
 <section class="timeline-section">
   <div class="section-label">Their Story</div>
@@ -1051,7 +1129,7 @@
   <div class="timeline">
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl1.jpeg','1986','The Wedding','Two hearts united in sacred vows. A beautiful ceremony surrounded by loved ones marked the beginning of a lifelong journey together.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl1.jpeg','1986','The Wedding','Two hearts united in sacred vows. A beautiful ceremony surrounded by loved ones marked the beginning of a lifelong journey together.')">
         <div class="tl-year">1986</div>
         <h4>The Wedding</h4>
         <p>Two hearts united in sacred vows. A beautiful ceremony surrounded by loved ones marked the beginning of a lifelong journey together.</p>
@@ -1061,7 +1139,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl2.jpg','1986','1st Child — Hyndavi 🌸','The arrival of their beloved first child, Hyndavi, filled their home with immeasurable joy and the warmth of new beginnings.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl2.jpg','1986','1st Child — Hyndavi 🌸','The arrival of their beloved first child, Hyndavi, filled their home with immeasurable joy and the warmth of new beginnings.')">
         <div class="tl-year">1986</div>
         <h4>1st Child — Hyndavi 🌸</h4>
         <p>The arrival of their beloved first child, Hyndavi, filled their home with immeasurable joy and the warmth of new beginnings.</p>
@@ -1071,7 +1149,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl3.jpg','1987','2nd Child — Pavan Kumar 🌟','Their son Pavan Kumar arrived, bringing boundless energy and happiness, completing the young family with doubled blessings.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl3.jpg','1987','2nd Child — Pavan Kumar 🌟','Their son Pavan Kumar arrived, bringing boundless energy and happiness, completing the young family with doubled blessings.')">
         <div class="tl-year">1987</div>
         <h4>2nd Child — Pavan Kumar 🌟</h4>
         <p>Their son Pavan Kumar arrived, bringing boundless energy and happiness, completing the young family with doubled blessings.</p>
@@ -1081,7 +1159,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl4.png','2002','Daughter\'s Marriage — Hyndavi &amp; Srinivasa Rao 💐','Their beloved daughter Hyndavi was wed to Srinivasa Rao in a joyous celebration, expanding the family with a loving new bond.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl4.png','2002','Daughter\'s Marriage — Hyndavi &amp; Srinivasa Rao 💐','Their beloved daughter Hyndavi was wed to Srinivasa Rao in a joyous celebration, expanding the family with a loving new bond.')">
         <div class="tl-year">2002</div>
         <h4>Daughter's Marriage — Hyndavi &amp; Srinivasa Rao 💐</h4>
         <p>Their beloved daughter Hyndavi was wed to Srinivasa Rao in a joyous celebration, expanding the family with a loving new bond.</p>
@@ -1091,7 +1169,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl5.jpeg','2003','1st Grandchild — Venkata Siva Rama Krishna 👼','The joy of becoming grandparents for the first time arrived with little Venkata Siva Rama Krishna, born to Hyndavi & Srinivasa Rao.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl5.jpeg','2003','1st Grandchild — Venkata Siva Rama Krishna 👼','The joy of becoming grandparents for the first time arrived with little Venkata Siva Rama Krishna, born to Hyndavi & Srinivasa Rao.')">
         <div class="tl-year">2003</div>
         <h4>1st Grandchild — Venkata Siva Rama Krishna 👼</h4>
         <p>The joy of becoming grandparents for the first time arrived with little Venkata Siva Rama Krishna, born to Hyndavi &amp; Srinivasa Rao.</p>
@@ -1101,7 +1179,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl6.jpg','2007','2nd Grandchild — Koushik 🌈','Sweet Koushik, the second grandchild born to Hyndavi & Srinivasa Rao, brought yet another wave of love and laughter into their lives.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl6.jpg','2007','2nd Grandchild — Koushik 🌈','Sweet Koushik, the second grandchild born to Hyndavi & Srinivasa Rao, brought yet another wave of love and laughter into their lives.')">
         <div class="tl-year">2007</div>
         <h4>2nd Grandchild — Koushik 🌈</h4>
         <p>Sweet Koushik, the second grandchild born to Hyndavi &amp; Srinivasa Rao, brought yet another wave of love and laughter into their lives.</p>
@@ -1111,7 +1189,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl7.jpg','2014','Son\'s Marriage — Pavan Kumar &amp; Prasanthi 💐','Their son Pavan Kumar married Prasanthi, a blessed union that brought a wonderful daughter-in-law into their loving family.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl7.jpg','2014','Son\'s Marriage — Pavan Kumar &amp; Prasanthi 💐','Their son Pavan Kumar married Prasanthi, a blessed union that brought a wonderful daughter-in-law into their loving family.')">
         <div class="tl-year">2014</div>
         <h4>Son's Marriage — Pavan Kumar &amp; Prasanthi 💐</h4>
         <p>Their son Pavan Kumar married Prasanthi, a blessed union that brought a wonderful daughter-in-law into their loving family.</p>
@@ -1121,7 +1199,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl8.jpg','2015','3rd Grandchild — Shre Kavvyah ✨','Little Shre Kavvyah, born to Pavan Kumar & Prasanthi, became their third grandchild and filled every room with her radiant smile.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl8.jpg','2015','3rd Grandchild — Shre Kavvyah ✨','Little Shre Kavvyah, born to Pavan Kumar & Prasanthi, became their third grandchild and filled every room with her radiant smile.')">
         <div class="tl-year">2015</div>
         <h4>3rd Grandchild — Shre Kavvyah ✨</h4>
         <p>Little Shre Kavvyah, born to Pavan Kumar &amp; Prasanthi, became their third grandchild and filled every room with her radiant smile.</p>
@@ -1131,7 +1209,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl9.jpg','2017','4th Grandchild — Chetan Sai 🌙','Chetan Sai, born to Pavan Kumar & Prasanthi, arrived as the fourth grandchild, the youngest star in their ever-growing constellation of love.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl9.jpg','2017','4th Grandchild — Chetan Sai 🌙','Chetan Sai, born to Pavan Kumar & Prasanthi, arrived as the fourth grandchild, the youngest star in their ever-growing constellation of love.')">
         <div class="tl-year">2017</div>
         <h4>4th Grandchild — Chetan Sai 🌙</h4>
         <p>Chetan Sai, born to Pavan Kumar &amp; Prasanthi, arrived as the fourth grandchild, the youngest star in their ever-growing constellation of love.</p>
@@ -1141,7 +1219,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl10.jpeg','2020','House Warming at Srikakulam 🏡','A grand milestone — the family celebrated the house warming of their new home in Srikakulam, a dream built brick by brick with love and hard work.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl10.jpeg','2020','House Warming at Srikakulam 🏡','A grand milestone — the family celebrated the house warming of their new home in Srikakulam, a dream built brick by brick with love and hard work.')">
         <div class="tl-year">2020</div>
         <h4>House Warming at Srikakulam 🏡</h4>
         <p>A grand milestone — the family celebrated the house warming of their new home in Srikakulam, a dream built brick by brick with love and hard work.</p>
@@ -1151,7 +1229,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="tl-content" onclick="openPopup('assets/tl11.jpg','2026','Ruby Anniversary ✦ 40 Years','Forty glorious years of love, faith, and devotion. Celebrated today with the whole family — two children, four grandchildren, and countless cherished memories.')">
+      <div class="tl-content" tabindex="0" role="button" onclick="openPopup('assets/tl11.jpg','2026','Ruby Anniversary ✦ 40 Years','Forty glorious years of love, faith, and devotion. Celebrated today with the whole family — two children, four grandchildren, and countless cherished memories.')">
         <div class="tl-year">2026</div>
         <h4>Ruby Anniversary ✦ 40 Years</h4>
         <p>Forty glorious years of love, faith, and devotion. Celebrated today with the whole family — two children, four grandchildren, and countless cherished memories.</p>
@@ -1181,7 +1259,7 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; <span>40th Anniversary 2026</span></p>
+  <p>Made with <span>❤️</span> to celebrate a lifetime of love &nbsp;✦&nbsp; 40th Anniversary <span data-anniversary-year></span></p>
 </footer>
 
 <a class="family-tree-fab" href="familytree.html" title="View Family Tree" aria-label="Open Family Tree page">
@@ -1215,6 +1293,7 @@
     // try to load image; show placeholder if missing
     const img = document.createElement('img');
     img.alt = title;
+    img.loading = 'lazy';
     img.onerror = function () {
       wrap.innerHTML = '';
       wrap.appendChild(badge);
@@ -1243,6 +1322,15 @@
   }
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  document.querySelectorAll('.tl-content').forEach(el => {
+    el.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        el.click();
+      }
+    });
+  });
 </script>
 
 <script>
@@ -1265,6 +1353,18 @@
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.addEventListener('load', function () { window.scrollTo(0, 0); });
+</script>
+<script>
+  (function() {
+    const anniversary = { day: '12', month: 'March', year: '2026' };
+    const heroDateEl = document.getElementById('heroDate');
+    if (heroDateEl) {
+      heroDateEl.textContent = `Celebrating ✦ ${anniversary.day} - ${anniversary.month.toUpperCase()} ✦ ${anniversary.year}`;
+    }
+    document.querySelectorAll('[data-anniversary-year]').forEach(el => {
+      el.textContent = anniversary.year;
+    });
+  })();
 </script>
 </body>
 </html>
