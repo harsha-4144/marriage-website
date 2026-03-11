@@ -301,14 +301,53 @@
     border-radius: 4px;
     box-shadow: 0 8px 30px rgba(43,26,14,0.15);
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
     opacity: 0;
     transform: translateY(26px);
+    isolation: isolate;
+    transform-origin: center center;
+  }
+  .photo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(165deg, rgba(255,255,255,0.18), transparent 36%, rgba(200,151,58,0.22));
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -120%;
+    width: 60%;
+    height: 170%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+    transform: rotate(10deg);
+    transition: left 0.65s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .photo-card img {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
+    will-change: transform;
   }
   .photo-card.is-revealed {
     animation: photo-card-enter 0.8s ease forwards;
   }
-  .photo-card:hover, .photo-card:focus-visible { transform: translateY(-4px) scale(1.02); box-shadow: 0 22px 60px rgba(43,26,14,0.35); }
+  .photo-card:hover, .photo-card:focus-visible {
+    transform: translateY(-7px) scaleX(1.035);
+    box-shadow: 0 24px 66px rgba(43,26,14,0.34);
+    filter: saturate(1.06);
+  }
+  .photo-card:hover::before, .photo-card:focus-visible::before { opacity: 1; }
+  .photo-card:hover::after, .photo-card:focus-visible::after { left: 120%; }
+  .photo-card:hover img, .photo-card:focus-visible img {
+    transform: scale(1.03);
+    filter: saturate(1.1) contrast(1.04);
+  }
   .photo-label {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -319,6 +358,13 @@
     font-style: italic;
     font-size: 1rem;
     text-align: center;
+    transition: padding 0.35s ease, letter-spacing 0.35s ease, background 0.35s ease;
+    z-index: 3;
+  }
+  .photo-card:hover .photo-label, .photo-card:focus-visible .photo-label {
+    padding: 38px 16px 16px;
+    letter-spacing: 0.04em;
+    background: linear-gradient(to top, rgba(43,26,14,0.9), rgba(43,26,14,0.35), transparent);
   }
 
   /* ── POOJA ── */
@@ -355,18 +401,61 @@
     border-radius: 8px;
     padding: 36px 28px;
     text-align: center;
-    background: var(--cream);
+    background: linear-gradient(180deg, #fffdf8, var(--cream));
     opacity: 0;
     transform: translateY(24px);
-    transition: border-color 0.3s, box-shadow 0.3s, opacity 0.7s ease, transform 0.7s ease;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.7s ease, transform 0.7s ease, filter 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    top: 0;
+    height: 3px;
+    border-radius: 0 0 6px 6px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0.35);
+    opacity: 0.4;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .event-card::after {
+    content: '';
+    position: absolute;
+    right: -28px;
+    top: -28px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,151,58,0.22), transparent 68%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
   }
   .event-card.is-revealed {
     opacity: 1;
     transform: translateY(0);
     transition-delay: var(--reveal-delay, 0s);
   }
-  .event-card:hover { border-color: var(--gold); box-shadow: 0 8px 32px rgba(200,151,58,0.15); }
-  .event-card .emoji { font-size: 2.8rem; margin-bottom: 16px; }
+  .event-card:hover {
+    border-color: rgba(200,151,58,0.72);
+    box-shadow: 0 16px 44px rgba(200,151,58,0.22);
+    transform: translateY(-6px);
+    filter: saturate(1.03);
+  }
+  .event-card:hover::before { transform: scaleX(1); opacity: 0.95; }
+  .event-card:hover::after { opacity: 1; }
+  .event-card .emoji {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    transition: transform 0.35s ease, filter 0.35s ease;
+    display: inline-block;
+  }
+  .event-card:hover .emoji {
+    transform: translateY(-4px) scale(1.08);
+    filter: drop-shadow(0 6px 10px rgba(200,151,58,0.35));
+  }
   .event-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--deep); margin-bottom: 10px; }
   .event-card p { font-size: 0.9rem; line-height: 1.7; color: #6b5040; margin-bottom: 16px; }
   .event-card .time-badge {
@@ -420,26 +509,52 @@
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   }
   .tl-content:hover, .tl-content:focus-visible {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 28px rgba(43,26,14,0.28);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 34px rgba(43,26,14,0.24);
     border-color: var(--gold);
   }
   .tl-content {
     width: calc(50% - 36px);
-    background: white;
+    background: linear-gradient(180deg, #fff, #fffcf5);
     border-radius: 6px;
     padding: 20px 24px 32px;
     box-shadow: 0 4px 16px rgba(43,26,14,0.08);
     border: 1px solid rgba(200,151,58,0.2);
     cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+    transition: border-color 0.3s, box-shadow 0.32s ease, transform 0.32s ease;
     position: relative;
     user-select: none;
+    overflow: hidden;
+  }
+  .tl-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent 85%);
+    opacity: 0.45;
+    transition: opacity 0.3s ease, width 0.3s ease;
   }
   .tl-content:hover {
-    border-color: var(--gold);
-    box-shadow: 0 10px 32px rgba(200,151,58,0.25);
-    transform: translateY(-4px);
+    border-color: rgba(200,151,58,0.65);
+    box-shadow: 0 12px 26px rgba(200,151,58,0.2);
+    transform: translateY(-5px);
+  }
+  .tl-content:hover::before, .tl-content:focus-visible::before {
+    opacity: 0.95;
+    width: 5px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .photo-card:hover, .photo-card:focus-visible,
+    .event-card:hover,
+    .tl-content:hover, .tl-content:focus-visible {
+      transform: none;
+      box-shadow: initial;
+      filter: none;
+    }
   }
   /* subtle click-to-view hint */
   .tl-content .tl-hint {

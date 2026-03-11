@@ -49,16 +49,6 @@
     min-width: 0;
     flex: 1;
   }
-
-  .hero-label {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.5rem;
-    letter-spacing: 0.14em;
-    color: var(--gold);
-    text-transform: uppercase;
-    line-height: 1.1;
-  }
-
   .hero-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: clamp(0.9rem, 3.8vw, 1.45rem);
@@ -199,6 +189,10 @@
     max-width: 68px;
     white-space: normal;
   }
+  .nl-name-tight {
+    font-size: 0.62rem;
+    max-width: 56px;
+  }
 
   /* ── CONNECTORS ── */
   .couple-row {
@@ -276,13 +270,13 @@
     box-shadow: 0 0 0 2px var(--gold-pale);
     flex-shrink: 0;
   }
+
   /* bigger on desktop */
   @media (min-width: 540px) {
     .hero {
       padding: 14px 24px;
       gap: 16px;
     }
-    .hero-label { font-size: 0.62rem; }
     .hero-title { font-size: 1.6rem; }
     .hero-sub { font-size: 0.95rem; }
     .back-btn {
@@ -295,6 +289,7 @@
     .nc-md { width: 68px; height: 68px; }
     .nc-sm { width: 56px; height: 56px; }
     .nl-name { font-size: 0.78rem; max-width: 80px; }
+    .nl-name-tight { font-size: 0.64rem; max-width: 66px; }
     .nl-role { font-size: 0.44rem; }
     .nl-year { font-size: 0.66rem; }
     .gen2-row { gap: 20px; }
@@ -334,7 +329,6 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-copy">
-    <div class="hero-label">40th Anniversary</div>
     <h1 class="hero-title">Our Family Tree</h1>
     <p class="hero-sub">Roots of love, branches of blessings</p>
   </div>
@@ -442,7 +436,7 @@
               <img src="assets/familytree/photo5.jpeg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="V.S.R.K"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
-            <div class="nl"><div class="nl-name" style="font-size:0.58rem;max-width:56px;">V. Siva Rama Krishna</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 03 Nov 2003</div></div>
+            <div class="nl"><div class="nl-name nl-name-tight">V. Siva Rama Krishna</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 03 Nov 2003</div></div>
           </div>
         </div>
         <div class="gc-col">
@@ -456,7 +450,7 @@
               <img src="assets/familytree/photo6.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Koushik"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
-            <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Koushik</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 15 Mar 2007</div></div>
+            <div class="nl"><div class="nl-name nl-name-tight">Koushik</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 15 Mar 2007</div></div>
           </div>
         </div>
       </div>
@@ -509,7 +503,7 @@
               <img src="assets/familytree/photo9.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Shre Kavvyah"/>
               <div class="fb" style="font-size:1rem;">👧</div>
             </div></div>
-            <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Shre Kavvyah</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 27 Feb 2015</div></div>
+            <div class="nl"><div class="nl-name nl-name-tight">Shre Kavvyah</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 27 Feb 2015</div></div>
           </div>
         </div>
         <div class="gc-col">
@@ -523,7 +517,7 @@
               <img src="assets/familytree/photo10.jpg" loading=\"lazy\" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Chetan Sai"/>
               <div class="fb" style="font-size:1rem;">👦</div>
             </div></div>
-            <div class="nl"><div class="nl-name" style="font-size:0.62rem;max-width:56px;">Chetan Sai</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 13 Aug 2017</div></div>
+            <div class="nl"><div class="nl-name nl-name-tight">Chetan Sai</div><div class="nl-role">Grandchild</div><div class="nl-year">DOB: 13 Aug 2017</div></div>
           </div>
         </div>
       </div>
@@ -592,6 +586,7 @@
       <button class="pp-close" type="button" aria-label="Close">✕</button>
       ${photoPanel}
       <div class="pp-content">
+        <div class="pp-kicker">Family Chapter</div>
         <div class="pp-name">${data.name || '—'}</div>
         <div class="pp-role">${data.role || '—'}</div>
         <div class="pp-meta">
@@ -604,6 +599,7 @@
             <div class="pp-meta-value">${data.dom || 'Not Applicable'}</div>
           </div>
         </div>
+        <div class="pp-about-title">About</div>
         <p class="pp-about">${data.about ? data.about : ''}</p>
       </div>
     `;
@@ -638,10 +634,13 @@
         width: min(96vw, 620px);
         max-height: 90vh;
         overflow-y: auto;
-        border-radius: 18px;
-        border: 1px solid rgba(200,131,10,0.45);
-        background: #fffdf8;
-        box-shadow: 0 34px 90px rgba(0,0,0,0.62);
+        border-radius: 20px;
+        border: 1px solid rgba(200,131,10,0.55);
+        background:
+          radial-gradient(circle at 14% 8%, rgba(255,255,255,0.45), transparent 34%),
+          radial-gradient(circle at 86% 90%, rgba(200,131,10,0.18), transparent 36%),
+          linear-gradient(180deg, #fffefb, #fef7ea 58%, #f7ecd8);
+        box-shadow: 0 40px 100px rgba(0,0,0,0.62);
         position: relative;
         animation: ppIn 0.3s ease-out both;
       }
@@ -653,20 +652,26 @@
         height: 34px;
         border-radius: 50%;
         border: 1px solid rgba(255,255,255,0.7);
-        background: rgba(0,0,0,0.52);
+        background: rgba(0,0,0,0.58);
         color: #fff;
         cursor: pointer;
         font-size: 0.95rem;
         z-index: 2;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .pp-close:hover {
+        transform: scale(1.06);
+        background: rgba(0,0,0,0.75);
       }
       .pp-photo-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0;
+        border-bottom: 1px solid rgba(200,131,10,0.25);
       }
       .pp-photo-slot {
         margin: 0;
-        height: 220px;
+        height: 230px;
         position: relative;
         background: linear-gradient(140deg, #ead7b2, #c9a86c);
         overflow: hidden;
@@ -698,48 +703,65 @@
         font-size: 0.58rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #fff;
+        color: #fef6e4;
         background: linear-gradient(to top, rgba(20,8,2,0.82), transparent);
       }
       .pp-content {
         padding: 22px 22px 24px;
-        background: linear-gradient(180deg, #fffdf8, #fef9f0);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.72), rgba(254,249,240,0.96)),
+          repeating-linear-gradient(45deg, rgba(200,131,10,0.03) 0, rgba(200,131,10,0.03) 10px, transparent 10px, transparent 20px);
+      }
+      .pp-kicker {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(200,131,10,0.35);
+        background: rgba(255,246,232,0.75);
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 0.5rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #9a5e18;
       }
       .pp-name {
         font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(1.8rem, 4.5vw, 2.35rem);
+        font-size: clamp(2rem, 4.9vw, 2.6rem);
         color: #2b1a0e;
         line-height: 1.12;
         margin-bottom: 6px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.9);
       }
       .pp-role {
         display: inline-block;
         border-radius: 999px;
         border: 1px solid rgba(200,131,10,0.42);
-        background: #fff6e8;
-        padding: 5px 12px;
+        background: linear-gradient(180deg, #fff6e8, #f5e1bc);
+        padding: 6px 13px;
         font-family: 'Cinzel Decorative', serif;
         font-size: 0.58rem;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         color: #6c3d12;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
       .pp-meta {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
       .pp-meta-item {
-        border: 1px solid rgba(200,131,10,0.25);
-        border-radius: 10px;
-        background: #fff;
+        border: 1px solid rgba(200,131,10,0.3);
+        border-radius: 11px;
+        background: linear-gradient(180deg, #fff, #fff8ec);
         padding: 10px 12px;
+        box-shadow: 0 6px 14px rgba(43,26,14,0.08);
       }
       .pp-meta-label {
         font-family: 'Cinzel Decorative', serif;
-        font-size: 0.5rem;
+        font-size: 0.48rem;
         letter-spacing: 0.14em;
         color: #b16b1d;
         text-transform: uppercase;
@@ -747,26 +769,61 @@
       }
       .pp-meta-value {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 1.02rem;
+        font-size: 1.12rem;
         color: #2b1a0e;
+      }
+      .pp-about-title {
+        margin-bottom: 7px;
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #a26014;
       }
       .pp-about {
         margin: 0;
         border: 1px solid rgba(200,131,10,0.25);
-        border-radius: 10px;
-        background: #fff;
-        padding: 12px 14px;
+        border-radius: 11px;
+        background: linear-gradient(180deg, #fff, #fff8ed);
+        padding: 13px 14px;
         font-family: 'Cormorant Garamond', serif;
-        font-size: 1.03rem;
-        line-height: 1.68;
+        font-size: 1.08rem;
+        line-height: 1.72;
         color: #3a1c08;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
       }
       .pp-about:empty { display: none; }
       @media (max-width: 560px) {
-        .pp-photo-slot { height: 180px; }
-        .pp-content { padding: 18px 16px 18px; }
+        .pp-overlay { padding: 10px; }
+        .pp-card {
+          width: 100%;
+          max-width: 420px;
+          border-radius: 16px;
+        }
+        .pp-close {
+          top: 8px;
+          right: 8px;
+          width: 32px;
+          height: 32px;
+        }
+        .pp-photo-grid { grid-template-columns: 1fr; }
+        .pp-photo-slot { height: 170px; }
+        .pp-content { padding: 16px 14px 16px; }
+        .pp-name { font-size: clamp(1.55rem, 8vw, 2.05rem); }
+        .pp-role {
+          font-size: 0.52rem;
+          letter-spacing: 0.12em;
+          margin-bottom: 14px;
+        }
         .pp-meta { grid-template-columns: 1fr; }
+        .pp-meta-item { padding: 9px 10px; }
+        .pp-meta-label { font-size: 0.44rem; }
+        .pp-meta-value { font-size: 0.98rem; }
+        .pp-about-title { margin-bottom: 6px; }
+        .pp-about {
+          font-size: 0.97rem;
+          line-height: 1.6;
+        }
       }
     `;
     document.head.appendChild(st);
